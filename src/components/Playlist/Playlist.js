@@ -5,9 +5,9 @@ import './Playlist.css';
 class Playlist extends React.Component {
     render() {
         return (
-            <div clasNames="Playlist">
+            <div className="Playlist">
                 <input defaultValue={"New Playlist"}/>
-                <TrackList />
+                <TrackList tracks={this.props.tracks} isRemoval={true} />
                 <a className="Playlist-save">SAVE TO SPOTIFY</a>
             </div>
         );
