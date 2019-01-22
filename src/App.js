@@ -10,26 +10,31 @@ class App extends Component {
         this.state = {
             searchResults: [
                 {
+                    id: 0,
                     name: 'Tiny Dancer',
                     artist: 'Elton John',
                     album: 'Madman Across The Water'
                 },
                 {
+                    id: 1,
                     name: 'Tiny Dancer',
                     artist: 'Tim McGraw',
                     album: 'Love Story'
                 },
                 {
+                    id: 2,
                     name: 'Tiny Dancer',
                     artist: 'Rockabye Baby!',
                     album: 'Lullaby Renditions of Elton John'
                 },
                 {
+                    id: 3,
                     name: 'Tiny Dancer',
                     artist: 'The White Raven',
                     album: 'Tiny Dancer'
                 },
                 {
+                    id: 4,
                     name: 'Tiny Dancer - Album Version',
                     artist: 'Ben Folds',
                     album: 'Ben Folds Live'
@@ -38,16 +43,19 @@ class App extends Component {
             playlistName: 'New Playlist',
             playlistTracks: [
                 {
+                    id: 5,
                     name: 'Stronger',
                     artist: 'Britney Spears',
                     album: 'Oops!... I Did It Again'
                 },
                 {
+                    id: 6,
                     name: 'So Emotional',
                     artist: 'Whitney Houston',
                     album: 'Whitney'
                 },
                 {
+                    id: 7,
                     name: 'It\'s Not Right But It\'s Okay',
                     artist: 'Whitney Houston',
                     album: 'My Love Is Your Love'
@@ -56,6 +64,7 @@ class App extends Component {
         };
 
         this.addTrack = this.addTrack.bind(this);
+        this.removeTrack = this.removeTrack.bind(this);
     }
 
     addTrack(track) {
@@ -67,6 +76,13 @@ class App extends Component {
         this.setState({ playlistTracks: updatedPlaylistTracks });
     }
 
+    removeTrack(track) {
+        let updatedPlaylistTracks = this.state.playlistTracks.filter(currentTrack => {
+            return currentTrack.id !== track.id;
+        });
+        this.setState({ playlistTracks: updatedPlaylistTracks });
+    }
+
     render() {
         return (
             <div>
@@ -75,7 +91,7 @@ class App extends Component {
                     <SearchBar />
                     <div className="App-playlist">
                         <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-                        <Playlist name={this.state.playlistName} tracks={this.state.playlistTracks} />
+                        <Playlist name={this.state.playlistName} tracks={this.state.playlistTracks} onRemove={this.removeTrack} />
                     </div>
                 </div>
             </div>
